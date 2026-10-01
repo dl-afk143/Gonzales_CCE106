@@ -4,11 +4,11 @@
 
 ### Student Information
 
-Name:
+Name: Dwayne Lee T. Gonzales
 
-Section:
+Section: 2013 CCE106
 
-Date:
+Date: 10-1-2026
 
 ### Required Features
 
