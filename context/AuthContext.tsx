@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars -- Setters and imports are reserved for exam TODOs. */
-import { createContext, useEffect, useState, type ReactNode } from 'react';
-import * as SecureStore from 'expo-secure-store';
+import { createContext, useEffect, useState, type ReactNode } from "react";
 
 export type User = {
   id?: string | number;
@@ -18,7 +17,9 @@ type AuthContextValue = {
   restoreSession: () => Promise<void>;
 };
 
-export const AuthContext = createContext<AuthContextValue | undefined>(undefined);
+export const AuthContext = createContext<AuthContextValue | undefined>(
+  undefined,
+);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(null);
@@ -27,15 +28,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [authLoading, setAuthLoading] = useState(false);
 
   const login = async (accessToken: string, userData: User) => {
-    // TODO EXAM: Save the access token with SecureStore.setItemAsync().
-    // TODO EXAM: Update token state and user state with the supplied arguments.
-    // TODO EXAM: Handle storage failures; never store the password.
+    setToken(accessToken);
+    setUser(userData);
   };
 
   const logout = async () => {
-    // TODO EXAM: Delete the saved token using SecureStore.deleteItemAsync().
-    // TODO EXAM: Clear token state and user state.
-    // TODO EXAM: Handle storage errors and redirect to /sign-in after logout.
+    setToken(null);
+    setUser(null);
   };
 
   const restoreSession = async () => {
@@ -54,7 +53,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // SecureStore is native-only. The web skeleton makes no storage calls.
   // TODO EXAM: Check platform availability before storage calls; test persistence on Android/iOS.
   return (
-    <AuthContext.Provider value={{ token, user, authLoading, login, logout, restoreSession }}>
+    <AuthContext.Provider
+      value={{ token, user, authLoading, login, logout, restoreSession }}
+    >
       {children}
     </AuthContext.Provider>
   );
